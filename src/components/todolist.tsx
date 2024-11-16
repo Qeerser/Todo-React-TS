@@ -1,11 +1,36 @@
+import { useEffect, useState } from "react"
 import { UseTodo } from "../context"
 import { Link } from "react-router-dom"
 
 export default function Todolist() {
     const {Todo, actions} = UseTodo()
+    const [selectedStatus , changeSelectedStatus] = useState('Pending')
+
+    const statuses = ['Pending','Doing','Done']
+    const [todoFilteredList, setTodoFilteredList] = useState([] as Todo[]);
+
+  useEffect(() => {
+    // Filter the Todo list based on selectedStatus
+    const filteredTodos = Todo.filter((todo) => todo.status === selectedStatus);
+    
+    // Update the state with the filtered list
+    setTodoFilteredList(filteredTodos);
+  }, [selectedStatus, Todo]);
+
     return(
         <>
-            {Todo.map((todo)=>{
+            <div className="tabs tabs-boxed my-2">
+            {statuses.map((status)=>(
+                <a
+                key={status}
+                className={status === selectedStatus ? 'tab tab-active' : 'tab'}
+                onClick={()=>changeSelectedStatus(status)}
+                >
+                { status }
+                </a>
+            ))}
+            </div>
+            {todoFilteredList.map((todo)=>{
                 return(
                     
                     <div key={todo.id} className=" flex items-center justify-between my-2">
