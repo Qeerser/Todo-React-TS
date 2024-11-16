@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# Todo List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **Todo List** application built with **Vite**, **React**, **TypeScript**, and styled using **Tailwind CSS** and **DaisyUI**. This app demonstrates modern web development practices with a focus on performance, type safety, and a responsive UI.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add**, **edit**, and **delete** todos.
+- **Mark tasks as complete**.
+- Responsive design with **Tailwind CSS**.
+- Pre-styled UI components using **DaisyUI**.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Vite**: Fast build tool for modern web development.
+- **React**: JavaScript library for building user interfaces.
+- **TypeScript**: Type-safe JavaScript for better tooling and maintainability.
+- **Tailwind CSS**: Utility-first CSS framework for custom designs.
+- **DaisyUI**: Tailwind CSS plugin for pre-built components.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- **Node.js** (version 14+).
+- **npm** or **yarn**.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Qeerser/Todo-React-TS.git
+   cd todolist
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the App
+
+To start the development server:
+
+```bash
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+The app will be available at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Let me know if you need any further adjustments!
