@@ -48,5 +48,3 @@ npm run dev
 The app will be available at `http://localhost:5173`.
 
 ---
-
-Let me know if you need any further adjustments!
