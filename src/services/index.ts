@@ -25,4 +25,5 @@ export const updateTodo = async (todo: Todo) => {
 
 export const deleteTodo = async (id: number) => {
   await axios.delete(`${URL}/todos/${id}`);
+  return id
 };

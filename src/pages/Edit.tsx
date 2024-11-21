@@ -1,15 +1,20 @@
 import { Link, useParams } from "react-router-dom";
-import { UseTodo } from "../context";
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../store";
+import { fetchTodoList, updateTodoList } from "../store/todoSlice";
 
 export default function Edit() {
   const id = parseInt(useParams().id || "0");
-  const { current, actions, loading } = UseTodo();
   const [todo, setTodo] = useState({} as Todo);
+  const current = useAppSelector((state)=> state.todo.current)
+  const loading = useAppSelector((state)=> state.todo.loading)
+
+  const dispatch = useAppDispatch()
+
 
   const [isUpdate , setIsUpdate] = useState(false)
   useEffect(() => {
-    actions.getId(id);
+    dispatch(fetchTodoList(id))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -18,7 +23,7 @@ export default function Edit() {
   }, [current]);
 
   const editTodo = async () => {
-    actions.update(todo)
+    dispatch(updateTodoList(todo))
     setIsUpdate(true)
     setTimeout(() => {
         setIsUpdate(false)

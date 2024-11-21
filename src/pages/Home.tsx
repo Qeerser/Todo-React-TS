@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import Todolist from "../components/todolist";
-import { UseTodo } from "../context";
+import { useAppDispatch, useAppSelector } from "../store";
+import { addTodoList, fetchTodoLists } from "../store/todoSlice";
 
 
 export default function Home() {
-  const {loading, actions } = UseTodo();
   const [name, setName] = useState("");
 
+  const loading = useAppSelector((state) => state.todo.loading)
+  const dispatch = useAppDispatch()
   useEffect(() => {
-    actions.get();
+    dispatch(fetchTodoLists())
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -25,8 +27,9 @@ export default function Home() {
       />
       <button className="btn ml-4 btn-secondary"
         onClick={() => {
-          setName("");
-          if(name) actions.add(name);
+          if(name) {
+          dispatch(addTodoList(name))
+          setName("");}
         }}
       >
         Add

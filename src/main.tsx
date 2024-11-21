@@ -1,15 +1,13 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { UseRouter } from "./router";
-import { TodoProvider } from "./context/index";
 import "./index.css"
+import { Provider } from "react-redux";
+import store from "./store";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <TodoProvider>
+    <Provider store={store}>
       <div className="max-w-3xl	mx-auto	my-0 p-4">
         <UseRouter />
       </div>
-    </TodoProvider>
-  </StrictMode>
+    </Provider>
 );

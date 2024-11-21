@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react"
-import { UseTodo } from "../context"
 import { Link } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../store";
+import { deleteTodoList } from "../store/todoSlice";
 
 export default function Todolist() {
-    const {Todo, actions} = UseTodo()
     const [selectedStatus , changeSelectedStatus] = useState('Pending')
 
     const statuses = ['Pending','Doing','Done']
     const [todoFilteredList, setTodoFilteredList] = useState([] as Todo[]);
+    const Todo = useAppSelector((state)=> state.todo.Todo)
+    const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    // Filter the Todo list based on selectedStatus
+    useEffect(() => {
     const filteredTodos = Todo.filter((todo) => todo.status === selectedStatus);
-    
-    // Update the state with the filtered list
     setTodoFilteredList(filteredTodos);
+    console.log()
   }, [selectedStatus, Todo]);
 
     return(
@@ -60,7 +60,7 @@ export default function Todolist() {
                     </Link>
                     <button
                         className="btn btn-square btn-active btn-outline ml-2"
-                        onClick={()=>actions.remove(todo.id)}
+                        onClick={()=> dispatch(deleteTodoList(todo.id))}
                     >
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
